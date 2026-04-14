@@ -3,795 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unisonix LLC - IT Consulting Solutions</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #0f3460;
-            --secondary-color: #16a085;
-            --accent-color: #e94560;
-            --light-bg: #f8f9fa;
-            --text-dark: #2c3e50;
-            --text-light: #7f8c8d;
-            --white: #ffffff;
-            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 15px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--white);
-        }
-
-        /* Navigation */
-        header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #1a4d7a 100%);
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, var(--secondary-color), #1abc9c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--secondary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background: var(--accent-color);
-            color: var(--white);
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent-color);
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #1a4d7a 50%, var(--secondary-color) 100%);
-            color: var(--white);
-            padding: 8rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(30px); }
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            animation: slideDown 0.8s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: slideUp 0.8s ease 0.2s both;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: slideUp 0.8s ease 0.4s both;
-        }
-
-        .btn-primary {
-            background: var(--accent-color);
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent-color);
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--white);
-            display: inline-block;
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-            background: var(--light-bg);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .service-card p {
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        /* About Section */
-        .about {
-            padding: 6rem 2rem;
-            background: var(--white);
-        }
-
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-content h2 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-content p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .about-image {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            border-radius: 10px;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--white);
-            box-shadow: var(--shadow);
-        }
-
-        .features-list {
-            list-style: none;
-            margin-top: 2rem;
-        }
-
-        .features-list li {
-            padding: 0.8rem 0;
-            padding-left: 2rem;
-            position: relative;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-
-        .features-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-
-        /* Team Section */
-        .team {
-            padding: 6rem 2rem;
-            background: var(--light-bg);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .team-member {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .member-image {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: var(--white);
-        }
-
-        .member-info {
-            padding: 2rem;
-        }
-
-        .member-info h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .member-info p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #1a4d7a 100%);
-            color: var(--white);
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-item {
-            margin-bottom: 2rem;
-        }
-
-        .contact-item h3 {
-            margin-bottom: 0.5rem;
-            color: var(--secondary-color);
-        }
-
-        .contact-item p {
-            opacity: 0.9;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 0.8rem;
-            border: none;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.3);
-        }
-
-        .submit-btn {
-            background: var(--accent-color);
-            color: var(--white);
-            padding: 1rem;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: #d63447;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: #0a1f35;
-            color: var(--white);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .footer-section h4 {
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--secondary-color);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .about-container,
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .about-image {
-                height: 300px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    <meta name="description" content="Unisonix LLC - Leading IT consulting firm delivering innovative solutions for digital transformation and business growth.">
+    <meta name="keywords" content="IT consulting, digital transformation, cloud solutions, cybersecurity, data analytics">
+    <meta name="author" content="Unisonix LLC">
+    <meta name="theme-color" content="#06b6d4">
+    <title>Unisonix LLC - Modern IT Consulting Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <!-- Navigation -->
-    <header>
-        <nav>
-            <div class="logo">UNISONIX</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <a href="#contact" class="cta-button">Get Started</a>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Transform Your Business with Expert IT Solutions</h1>
-            <p>Unisonix LLC delivers cutting-edge IT consulting services designed to accelerate your digital transformation and drive sustainable growth.</p>
-            <div class="hero-buttons">
-                <a href="#services" class="btn-primary">Explore Services</a>
-                <a href="#contact" class="btn-secondary">Schedule Consultation</a>
-            </div>
+<!-- HEADER & NAVIGATION -->
+<header id="header">
+    <nav>
+        <div class="logo">✨ Unisonix</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="cta-button">Get Started</a>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Transform Your Business with Expert IT Solutions</h1>
+        <p>Unisonix LLC delivers cutting-edge IT consulting services designed to accelerate your digital transformation and drive sustainable growth in the modern era.</p>
+        <div class="hero-buttons">
+            <a href="services.html" class="btn-primary">Explore Services</a>
+            <a href="contact.html" class="btn-secondary">Schedule Consultation</a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
+<!-- STATS SECTION -->
+<section class="stats">
+    <div class="stats-container">
+        <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Client Satisfaction</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Support Available</div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED SERVICES SECTION -->
+<section class="services" id="services">
+    <div class="section-header">
         <h2 class="section-title">Our Services</h2>
-        <p class="section-subtitle">Comprehensive IT solutions tailored to your business needs</p>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">💻</div>
-                <h3>Digital Strategy</h3>
-                <p>Develop comprehensive digital transformation strategies that align with your business objectives and market opportunities.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔒</div>
-                <h3>Cybersecurity</h3>
-                <p>Protect your critical assets with advanced security solutions and comprehensive risk management frameworks.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">☁️</div>
-                <h3>Cloud Solutions</h3>
-                <p>Migrate and optimize your infrastructure with scalable cloud solutions that reduce costs and improve efficiency.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📊</div>
-                <h3>Data Analytics</h3>
-                <p>Unlock insights from your data with advanced analytics and business intelligence solutions.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🛠️</div>
-                <h3>System Integration</h3>
-                <p>Seamlessly integrate disparate systems and applications to streamline operations and enhance productivity.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">👥</div>
-                <h3>IT Consulting</h3>
-                <p>Expert guidance on technology selection, implementation, and optimization for maximum ROI.</p>
-            </div>
+        <p class="section-subtitle">Comprehensive IT solutions tailored to your business needs and market opportunities</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">🎯</div>
+            <h3>Digital Strategy</h3>
+            <p>Develop comprehensive digital transformation strategies that align with your business objectives and market opportunities.</p>
         </div>
-    </section>
+        <div class="service-card">
+            <div class="service-icon">🔒</div>
+            <h3>Cybersecurity</h3>
+            <p>Protect your critical assets with advanced security solutions and comprehensive risk management frameworks.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">☁️</div>
+            <h3>Cloud Solutions</h3>
+            <p>Migrate and optimize your infrastructure with scalable cloud solutions that reduce costs and improve efficiency.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">📊</div>
+            <h3>Data Analytics</h3>
+            <p>Unlock insights from your data with advanced analytics and business intelligence solutions.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🔗</div>
+            <h3>System Integration</h3>
+            <p>Seamlessly integrate disparate systems and applications to streamline operations and enhance productivity.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">💡</div>
+            <h3>IT Consulting</h3>
+            <p>Expert guidance on technology selection, implementation, and optimization for maximum ROI.</p>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="services.html" class="btn-primary">View All Services</a>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-container">
-            <div class="about-content">
-                <h2>About Unisonix LLC</h2>
-                <p>With over 15 years of experience in the IT consulting industry, Unisonix LLC has established itself as a trusted partner for businesses seeking to leverage technology for competitive advantage.</p>
-                <p>Our team of certified professionals brings deep expertise across multiple domains, from cloud infrastructure to enterprise security. We pride ourselves on delivering solutions that not only meet today's challenges but anticipate tomorrow's opportunities.</p>
-                <ul class="features-list">
-                    <li>500+ Successful Projects Delivered</li>
-                    <li>Industry-Leading Expertise</li>
-                    <li>24/7 Customer Support</li>
-                    <li>Certified & Experienced Team</li>
-                    <li>Proven Track Record</li>
-                </ul>
-            </div>
-            <div class="about-image">🚀</div>
-        </div>
-    </section>
+<!-- CTA SECTION -->
+<section class="cta-section">
+    <div class="cta-content">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Let's work together to achieve your digital transformation goals</p>
+        <a href="contact.html" class="btn-primary">Start Your Journey</a>
+    </div>
+</section>
 
-    <!-- Team Section -->
-    <section class="team" id="team">
-        <h2 class="section-title">Our Leadership Team</h2>
-        <p class="section-subtitle">Meet the experts driving innovation at Unisonix LLC</p>
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="member-image">👨‍💼</div>
-                <div class="member-info">
-                    <h3>James Mitchell</h3>
-                    <p>Chief Executive Officer</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <div class="member-image">👩‍💼</div>
-                <div class="member-info">
-                    <h3>Sarah Chen</h3>
-                    <p>Chief Technology Officer</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <div class="member-image">👨‍💻</div>
-                <div class="member-info">
-                    <h3>Michael Rodriguez</h3>
-                    <p>Head of Solutions</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <div class="member-image">👩‍💻</div>
-                <div class="member-info">
-                    <h3>Emily Watson</h3>
-                    <p>Director of Operations</p>
-                </div>
-            </div>
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>About Unisonix</h4>
+            <p>Leading IT consulting firm delivering innovative solutions for digital transformation and business growth.</p>
         </div>
-    </section>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+                <li><a href="services.html">Digital Strategy</a></li>
+                <li><a href="services.html">Cybersecurity</a></li>
+                <li><a href="services.html">Cloud Solutions</a></li>
+                <li><a href="services.html">Data Analytics</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Legal</h4>
+            <ul>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+                <li><a href="cookie-policy.html">Cookie Policy</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Unisonix LLC. All rights reserved.</p>
+    </div>
+</footer>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact-container">
-            <div class="contact-info">
-                <h2>Get In Touch</h2>
-                <div class="contact-item">
-                    <h3>📍 Address</h3>
-                    <p>123 Innovation Drive<br>Tech Valley, CA 94025<br>United States</p>
-                </div>
-                <div class="contact-item">
-                    <h3>📞 Phone</h3>
-                    <p>+1 (555) 123-4567</p>
-                </div>
-                <div class="contact-item">
-                    <h3>📧 Email</h3>
-                    <p>info@unisonix.com<br>support@unisonix.com</p>
-                </div>
-                <div class="contact-item">
-                    <h3>🕐 Business Hours</h3>
-                    <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: Closed</p>
-                </div>
-            </div>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>About Unisonix</h4>
-                <p>Leading IT consulting firm delivering innovative solutions for digital transformation.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="#services">Digital Strategy</a></li>
-                    <li><a href="#services">Cybersecurity</a></li>
-                    <li><a href="#services">Cloud Solutions</a></li>
-                    <li><a href="#services">Data Analytics</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <ul>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Instagram</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Unisonix LLC. All rights reserved. | <a href="#" style="color: var(--text-light);">Privacy Policy</a> | <a href="#" style="color: var(--text-light);">Terms of Service</a></p>
-        </div>
-    </footer>
+<script src="script.js"></script>
 </body>
 </html>
