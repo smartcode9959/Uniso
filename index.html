@@ -1,158 +1,1644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Unisonix LLC - Leading IT consulting firm delivering innovative solutions for digital transformation and business growth.">
-    <meta name="keywords" content="IT consulting, digital transformation, cloud solutions, cybersecurity, data analytics">
-    <meta name="author" content="Unisonix LLC">
-    <meta name="theme-color" content="#06b6d4">
-    <title>Unisonix LLC - Modern IT Consulting Solutions</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Unisonix — Global software consulting and IT staffing firm connecting experienced engineers worldwide with US-based companies. Fully remote opportunities.">
+  <title>Unisonix — Global Software Consulting & IT Staffing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+  <style>
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--color-primary);
+      background: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+
+    /* =============================================
+       DESIGN TOKENS
+    ============================================= */
+    :root {
+      --color-primary:       #0F172A;
+      --color-secondary:     #64748B;
+      --color-muted:         #94A3B8;
+      --color-accent:        #4F46E5;
+      --color-accent-dark:   #4338CA;
+      --color-accent-light:  #EEF2FF;
+      --color-accent-ring:   #C7D2FE;
+      --color-bg:            #FFFFFF;
+      --color-bg-soft:       #F8FAFC;
+      --color-bg-hero:       #FAFBFF;
+      --color-border:        #E2E8F0;
+      --color-footer:        #080E1C;
+
+
+      --nav-height: 72px;
+
+
+      --radius-sm:   8px;
+      --radius-md:   12px;
+      --radius-lg:   16px;
+      --radius-xl:   24px;
+      --radius-full: 9999px;
+
+
+      --shadow-xs: 0 1px 2px rgba(15,23,42,.04);
+      --shadow-sm: 0 1px 4px rgba(15,23,42,.06), 0 1px 2px rgba(15,23,42,.03);
+      --shadow-md: 0 4px 16px rgba(15,23,42,.08), 0 2px 4px rgba(15,23,42,.04);
+      --shadow-lg: 0 12px 40px rgba(15,23,42,.10), 0 4px 12px rgba(15,23,42,.05);
+      --shadow-hover: 0 20px 60px rgba(79,70,229,.14), 0 8px 24px rgba(15,23,42,.06);
+
+
+      --ease: cubic-bezier(.4,0,.2,1);
+      --dur:  .22s;
+      --dur-slow: .36s;
+    }
+
+
+    /* =============================================
+       SCROLL OFFSET FOR STICKY NAV
+    ============================================= */
+    section[id] { scroll-margin-top: var(--nav-height); }
+
+
+    /* =============================================
+       LAYOUT HELPERS
+    ============================================= */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+
+    .section      { padding: 7rem 0; }
+    .section-soft { background: var(--color-bg-soft); }
+
+
+    /* =============================================
+       SECTION CHROME (LABEL / HEADING / SUB)
+    ============================================= */
+    .sec-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-accent-ring);
+      padding: .35rem 1rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 1.25rem;
+    }
+
+
+    .sec-title {
+      font-size: clamp(1.9rem, 4vw, 2.75rem);
+      font-weight: 800;
+      color: var(--color-primary);
+      line-height: 1.14;
+      letter-spacing: -.03em;
+      margin-bottom: .75rem;
+    }
+
+
+    .sec-sub {
+      font-size: 1.0625rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+      max-width: 540px;
+    }
+
+
+    .sec-header          { margin-bottom: 3.5rem; }
+    .sec-header--center  { text-align: center; }
+    .sec-header--center .sec-sub { margin: 0 auto; }
+
+
+    /* =============================================
+       BUTTONS
+    ============================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: .875rem 1.75rem;
+      border-radius: var(--radius-full);
+      font-family: inherit;
+      font-size: .9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform var(--dur) var(--ease),
+                  box-shadow var(--dur) var(--ease),
+                  background var(--dur) var(--ease),
+                  border-color var(--dur) var(--ease);
+      white-space: nowrap;
+    }
+
+
+    .btn-primary {
+      background: var(--color-accent);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(79,70,229,.32);
+    }
+    .btn-primary:hover {
+      background: var(--color-accent-dark);
+      box-shadow: 0 6px 22px rgba(79,70,229,.42);
+      transform: translateY(-1px);
+    }
+
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-primary);
+      border: 1.5px solid var(--color-border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--color-primary);
+      background: var(--color-bg-soft);
+      transform: translateY(-1px);
+    }
+
+
+    /* =============================================
+       ░░ NAVBAR ░░
+    ============================================= */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-height);
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(226,232,240,.8);
+    }
+
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+
+    .nav-logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--color-primary);
+      letter-spacing: -.04em;
+      flex-shrink: 0;
+    }
+    .nav-logo em {
+      font-style: normal;
+      color: var(--color-accent);
+    }
+
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+    }
+
+
+    .nav-links a {
+      position: relative;
+      font-size: .9375rem;
+      font-weight: 500;
+      color: var(--color-secondary);
+      padding: .5rem .875rem;
+      border-radius: var(--radius-sm);
+      transition: color var(--dur) var(--ease);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: .875rem;
+      right: .875rem;
+      bottom: 5px;
+      height: 2px;
+      background: var(--color-accent);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform var(--dur) var(--ease);
+    }
+    .nav-links a:hover { color: var(--color-primary); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+
+    .nav-cta { margin-left: 1rem; }
+
+
+    /* =============================================
+       ░░ HERO ░░
+    ============================================= */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - var(--nav-height));
+      background: var(--color-bg-hero);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 6rem 0;
+    }
+
+
+    /* Gradient glows */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 65% -5%,  rgba(79,70,229,.09)  0%, transparent 60%),
+        radial-gradient(ellipse 45% 45% at 95% 85%,  rgba(139,92,246,.07) 0%, transparent 55%),
+        radial-gradient(ellipse 30% 30% at 5%  80%,  rgba(14,165,233,.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+
+    /* Dot-grid pattern */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(79,70,229,.13) 1px, transparent 1px);
+      background-size: 30px 30px;
+      -webkit-mask-image: radial-gradient(ellipse 65% 65% at 50% 50%, black 30%, transparent 100%);
+      mask-image: radial-gradient(ellipse 65% 65% at 50% 50%, black 30%, transparent 100%);
+      pointer-events: none;
+    }
+
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+
+    /* Badge pill */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-accent-ring);
+      padding: .35rem 1rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge-dot {
+      width: 7px; height: 7px;
+      background: var(--color-accent);
+      border-radius: 50%;
+    }
+
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5.5vw, 3.75rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -.04em;
+      color: var(--color-primary);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title .grad {
+      background: linear-gradient(130deg, #4F46E5 0%, #7C3AED 45%, #0EA5E9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+
+    .hero-desc {
+      font-size: 1.125rem;
+      color: var(--color-secondary);
+      line-height: 1.8;
+      max-width: 510px;
+      margin-bottom: 2.25rem;
+    }
+
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+    .hero-trust-text {
+      font-size: .875rem;
+      color: var(--color-secondary);
+      line-height: 1.6;
+    }
+    .hero-trust-text strong { color: var(--color-primary); }
+
+
+    /* ---- Hero Visual: floating card stack ---- */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .card-stack {
+      position: relative;
+      width: 360px;
+      height: 340px;
+    }
+
+
+    .hcard {
+      position: absolute;
+      background: #fff;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-lg);
+      padding: 1.5rem;
+    }
+
+
+    .hcard--main {
+      width: 300px;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+    }
+    .hcard--left {
+      width: 260px;
+      left: 50%; top: calc(50% - 20px);
+      transform: translate(-62%, -50%) rotate(-7deg);
+      z-index: 1;
+      opacity: .55;
+    }
+    .hcard--right {
+      width: 260px;
+      left: 50%; top: calc(50% - 20px);
+      transform: translate(-38%, -50%) rotate(7deg);
+      z-index: 2;
+      opacity: .65;
+    }
+
+
+    .hcard-top {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.25rem;
+    }
+    .hcard-icon {
+      width: 40px; height: 40px;
+      background: var(--color-accent-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hcard-name {
+      font-size: .9375rem;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+    .hcard-role {
+      font-size: .8rem;
+      color: var(--color-secondary);
+    }
+    .hcard-stat-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--color-primary);
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+    .hcard-stat-label {
+      font-size: .8125rem;
+      color: var(--color-secondary);
+      margin-bottom: .875rem;
+    }
+    .hcard-bar {
+      height: 6px;
+      background: var(--color-border);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .hcard-bar-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      background: linear-gradient(90deg, #4F46E5, #7C3AED);
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .375rem;
+    }
+    .tag {
+      font-size: .7rem;
+      font-weight: 600;
+      padding: .25rem .65rem;
+      border-radius: var(--radius-full);
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+    }
+    .tag--green  { background: #F0FDF4; color: #059669; }
+    .tag--sky    { background: #EFF6FF; color: #0EA5E9; }
+    .tag--orange { background: #FFF7ED; color: #EA580C; }
+    .tag--slate  { background: var(--color-bg-soft); color: var(--color-secondary); border: 1px solid var(--color-border); }
+
+
+    /* =============================================
+       ░░ ABOUT ░░
+    ============================================= */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+
+    .about-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .about-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: .875rem;
+    }
+    .bullet-check {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .about-bullet p {
+      font-size: .9375rem;
+      color: var(--color-secondary);
+      line-height: 1.6;
+    }
+
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--dur-slow) var(--ease),
+                  box-shadow var(--dur-slow) var(--ease),
+                  border-color var(--dur-slow) var(--ease);
+    }
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--color-accent-ring);
+    }
+    .stat-num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--color-accent);
+      letter-spacing: -.05em;
+      line-height: 1;
+      margin-bottom: .375rem;
+    }
+    .stat-label {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--color-secondary);
+    }
+
+
+    /* =============================================
+       ░░ SERVICES ░░
+    ============================================= */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+
+    .service-card {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      transition: transform var(--dur-slow) var(--ease),
+                  box-shadow var(--dur-slow) var(--ease),
+                  border-color var(--dur-slow) var(--ease);
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: transparent;
+    }
+
+
+    .service-icon-wrap {
+      width: 56px; height: 56px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .si-indigo  { background: linear-gradient(135deg, #EEF2FF, #E0E7FF); }
+    .si-emerald { background: linear-gradient(135deg, #F0FDF4, #DCFCE7); }
+    .si-orange  { background: linear-gradient(135deg, #FFF7ED, #FFEDD5); }
+    .si-sky     { background: linear-gradient(135deg, #EFF6FF, #DBEAFE); }
+
+
+    .service-title {
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      letter-spacing: -.01em;
+      margin-bottom: .625rem;
+    }
+    .service-desc {
+      font-size: .9375rem;
+      color: var(--color-secondary);
+      line-height: 1.7;
+    }
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      font-size: .875rem;
+      font-weight: 600;
+      margin-top: 1.25rem;
+      transition: gap var(--dur) var(--ease);
+    }
+    .service-link:hover { gap: .65rem; }
+    .sl-indigo  { color: var(--color-accent); }
+    .sl-emerald { color: #059669; }
+    .sl-orange  { color: #EA580C; }
+    .sl-sky     { color: #0EA5E9; }
+
+
+    /* =============================================
+       ░░ TEAM ░░
+    ============================================= */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+
+    .team-card {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: transform var(--dur-slow) var(--ease),
+                  box-shadow var(--dur-slow) var(--ease),
+                  border-color var(--dur-slow) var(--ease);
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: transparent;
+    }
+
+
+    .team-avatar {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      overflow: hidden;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2.5px var(--color-border);
+      background: var(--color-bg-soft);
+    }
+    .ta-indigo  { background: linear-gradient(135deg, #4F46E5, #7C3AED); }
+    .ta-emerald { background: linear-gradient(135deg, #059669, #10B981); }
+    .ta-sky     { background: linear-gradient(135deg, #0EA5E9, #38BDF8); }
+
+
+    .team-badge {
+      display: inline-flex;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: .28rem .875rem;
+      border-radius: var(--radius-full);
+      margin-bottom: .875rem;
+    }
+    .tb-indigo  { background: var(--color-accent-light); color: var(--color-accent); }
+    .tb-emerald { background: #F0FDF4; color: #059669; }
+    .tb-sky     { background: #EFF6FF; color: #0EA5E9; }
+
+
+    .team-name {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: .5rem;
+    }
+    .team-desc {
+      font-size: .875rem;
+      color: var(--color-secondary);
+      line-height: 1.65;
+    }
+    .team-skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .375rem;
+      margin-top: 1.25rem;
+    }
+
+
+    /* =============================================
+       ░░ CONTACT ░░
+    ============================================= */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .contact-item-icon {
+      width: 44px; height: 44px;
+      background: var(--color-accent-light);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-item-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: .25rem;
+    }
+    .contact-item-value {
+      font-size: .9375rem;
+      font-weight: 500;
+      color: var(--color-primary);
+    }
+
+
+    /* Form card */
+    .form-card {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    .form-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 1.75rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label {
+      display: block;
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: .5rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: .8125rem 1rem;
+      font-family: inherit;
+      font-size: .9375rem;
+      color: var(--color-primary);
+      background: var(--color-bg-soft);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      outline: none;
+      transition: border-color var(--dur) var(--ease),
+                  box-shadow var(--dur) var(--ease),
+                  background var(--dur) var(--ease);
+    }
+    .form-control::placeholder { color: #94A3B8; }
+    .form-control:focus {
+      background: #fff;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 4px rgba(79,70,229,.08);
+    }
+    textarea.form-control {
+      resize: vertical;
+      min-height: 140px;
+    }
+    select.form-control {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      cursor: pointer;
+    }
+    .form-submit { width: 100%; padding: 1rem; margin-top: .375rem; font-size: 1rem; }
+
+
+    /* =============================================
+       ░░ FOOTER ░░
+    ============================================= */
+    .footer {
+      background: var(--color-footer);
+      color: rgba(255,255,255,.5);
+      padding: 5rem 0 2.5rem;
+    }
+
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1fr 1.6fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 2rem;
+    }
+
+
+    .footer-logo {
+      font-size: 1.375rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -.04em;
+      margin-bottom: 1rem;
+    }
+    .footer-logo em { font-style: normal; color: #818CF8; }
+    .footer-tagline {
+      font-size: .875rem;
+      line-height: 1.75;
+      max-width: 270px;
+    }
+
+
+    .footer-col-title {
+      font-size: .8125rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .footer-links a {
+      font-size: .875rem;
+      color: rgba(255,255,255,.45);
+      transition: color var(--dur) var(--ease);
+    }
+    .footer-links a:hover { color: #fff; }
+
+
+    .footer-contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      margin-bottom: 1rem;
+    }
+    .footer-contact-row svg {
+      flex-shrink: 0;
+      opacity: .45;
+      margin-top: 1px;
+    }
+    .footer-contact-row span {
+      font-size: .875rem;
+      line-height: 1.6;
+    }
+
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy { font-size: .8125rem; }
+    .footer-legal {
+      display: flex;
+      gap: 1.75rem;
+    }
+    .footer-legal a {
+      font-size: .8125rem;
+      color: rgba(255,255,255,.35);
+      transition: color var(--dur) var(--ease);
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,.8); }
+
+
+    /* =============================================
+       ░░ PHOTO ELEMENTS ░░
+    ============================================= */
+
+
+    /* --- Hero image frame --- */
+    .hero-img-frame {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border: 1px solid var(--color-border);
+    }
+    .hero-img-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform .7s var(--ease);
+    }
+    .hero-img-frame:hover img { transform: scale(1.04); }
+
+
+    /* Glassmorphism badge — bottom-left */
+    .hero-img-badge {
+      position: absolute;
+      bottom: 1.25rem; left: 1.25rem;
+      background: rgba(255,255,255,.93);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: var(--radius-lg);
+      padding: .9rem 1.1rem 1rem;
+      box-shadow: var(--shadow-md);
+      min-width: 165px;
+    }
+    .hib-num {
+      font-size: 1.6rem; font-weight: 900;
+      color: var(--color-primary); letter-spacing: -.05em; line-height: 1;
+    }
+    .hib-label {
+      font-size: .75rem; color: var(--color-secondary); margin-bottom: .55rem;
+    }
+
+
+    /* Live pill — top-right */
+    .hero-img-pill {
+      position: absolute;
+      top: 1.25rem; right: 1.25rem;
+      display: inline-flex; align-items: center; gap: .45rem;
+      background: rgba(255,255,255,.93);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: var(--radius-full);
+      padding: .45rem 1rem;
+      box-shadow: var(--shadow-sm);
+      font-size: .8125rem; font-weight: 600; color: var(--color-primary);
+    }
+    .live-dot {
+      width: 8px; height: 8px;
+      background: #10B981; border-radius: 50%; flex-shrink: 0;
+    }
+
+
+    /* --- About section image --- */
+    .about-img-wrap {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 1.25rem;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--color-border);
+    }
+    .about-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform .7s var(--ease);
+    }
+    .about-img-wrap:hover img { transform: scale(1.04); }
+
+
+    /* --- Team avatar photo --- */
+    .team-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover; border-radius: 50%; display: block;
+    }
+
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .hero .container { grid-template-columns: 1fr; }
+      .hero-visual      { display: none; }
+
+
+      .about-grid       { grid-template-columns: 1fr; gap: 3.5rem; }
+
+
+      .footer-top       { grid-template-columns: 1fr 1fr; }
+    }
+
+
+    @media (max-width: 768px) {
+      :root { --nav-height: 64px; }
+
+
+      .section { padding: 5rem 0; }
+
+
+      .nav-links { display: none; }
+      .nav-cta   { display: none; }
+
+
+      .services-grid  { grid-template-columns: 1fr; }
+      .team-grid      { grid-template-columns: 1fr; }
+      .contact-grid   { grid-template-columns: 1fr; gap: 3rem; }
+
+
+      .stats-grid     { grid-template-columns: 1fr 1fr; }
+
+
+      .footer-top     { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-bottom  { flex-direction: column; gap: 1rem; text-align: center; }
+
+
+      .form-row { grid-template-columns: 1fr; }
+
+
+      .hero { padding: 4rem 0; min-height: auto; }
+    }
+
+
+    @media (max-width: 480px) {
+      .container { padding: 0 1.25rem; }
+
+
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; }
+
+
+      .stats-grid   { grid-template-columns: 1fr 1fr; gap: .75rem; }
+      .stat-card    { padding: 1.25rem 1rem; }
+      .stat-num     { font-size: 2rem; }
+    }
+  </style>
 </head>
+
+
 <body>
 
-<!-- HEADER & NAVIGATION -->
-<header id="header">
-    <nav>
-        <div class="logo">✨ Unisonix</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <a href="contact.html" class="cta-button">Get Started</a>
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+<header class="navbar">
+  <div class="container">
+    <a href="#home" class="nav-logo">Uni<em>sonix</em></a>
+
+
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
     </nav>
+
+
+    <a href="#contact" class="btn btn-primary nav-cta">Get Started</a>
+  </div>
 </header>
 
-<!-- HERO SECTION -->
+
+
+
+<!-- ============================================================
+     HERO
+============================================================ -->
 <section class="hero" id="home">
+  <div class="container">
+
+
+    <!-- Left: copy -->
     <div class="hero-content">
-        <h1>Transform Your Business with Expert IT Solutions</h1>
-        <p>Unisonix LLC delivers cutting-edge IT consulting services designed to accelerate your digital transformation and drive sustainable growth in the modern era.</p>
-        <div class="hero-buttons">
-            <a href="services.html" class="btn-primary">Explore Services</a>
-            <a href="contact.html" class="btn-secondary">Schedule Consultation</a>
-        </div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Global IT Consulting &amp; Staffing
+      </div>
+
+
+      <h1 class="hero-title">
+        Empowering Global Talent.<br>
+        <span class="grad">Connecting You to<br>US Opportunities.</span>
+      </h1>
+
+
+      <p class="hero-desc">
+        We bridge world-class engineers with leading US companies through expert staffing,
+        strategic consulting, and fully remote placements — no borders, no limits.
+      </p>
+
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Get Started Today</a>
+        <a href="#services" class="btn btn-ghost">Explore Services</a>
+      </div>
+
+
+      <div class="hero-trust">
+        <p class="hero-trust-text">
+          <strong>Trusted by 200+ companies</strong> &nbsp;·&nbsp;
+          Engineers in 40+ countries &nbsp;·&nbsp;
+          100% remote placements
+        </p>
+      </div>
     </div>
+
+
+    <!-- Right: real photo with floating UI badges -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-img-frame">
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80"
+          alt="Team collaborating remotely"
+          loading="eager"
+        >
+        <!-- Top-right live pill -->
+        <div class="hero-img-pill">
+          <span class="live-dot"></span>
+          24 Active Placements
+        </div>
+        <!-- Bottom-left stat badge -->
+        <div class="hero-img-badge">
+          <div class="hib-num">98%</div>
+          <div class="hib-label">placement success rate</div>
+          <div class="hcard-bar">
+            <div class="hcard-bar-fill" style="width:98%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- STATS SECTION -->
-<section class="stats">
-    <div class="stats-container">
-        <div class="stat-item">
-            <div class="stat-number">500+</div>
-            <div class="stat-label">Projects Delivered</div>
+
+
+
+<!-- ============================================================
+     ABOUT
+============================================================ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+
+
+      <!-- Left: copy -->
+      <div>
+        <div class="sec-label">Who We Are</div>
+        <h2 class="sec-title">Built for the Future of Remote Work</h2>
+        <p class="sec-sub">
+          Unisonix is a global software consulting and IT staffing firm redefining how exceptional
+          engineering talent connects with innovative US companies — at scale, fully remote, with
+          zero friction.
+        </p>
+
+
+        <div class="about-bullets">
+          <div class="about-bullet">
+            <div class="bullet-check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <p>Engineers pre-vetted across 40+ countries for US-market readiness and deep technical excellence</p>
+          </div>
+          <div class="about-bullet">
+            <div class="bullet-check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <p>100% remote-first placements with seamless time-zone alignment and ongoing collaboration support</p>
+          </div>
+          <div class="about-bullet">
+            <div class="bullet-check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <p>Strategic consulting from architecture to cloud migration, backed by deep industry expertise</p>
+          </div>
+          <div class="about-bullet">
+            <div class="bullet-check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <p>End-to-end IT support services keeping your teams productive and your infrastructure rock-solid</p>
+          </div>
         </div>
-        <div class="stat-item">
-            <div class="stat-number">15+</div>
-            <div class="stat-label">Years Experience</div>
+      </div>
+
+
+      <!-- Right: photo + stats -->
+      <div>
+        <div class="about-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+            alt="Remote engineering team in a video call"
+            loading="lazy"
+          >
         </div>
-        <div class="stat-item">
-            <div class="stat-number">98%</div>
-            <div class="stat-label">Client Satisfaction</div>
+        <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">US Companies Served</div>
         </div>
-        <div class="stat-item">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">Support Available</div>
+        <div class="stat-card">
+          <div class="stat-num">40+</div>
+          <div class="stat-label">Countries Represented</div>
         </div>
+        <div class="stat-card">
+          <div class="stat-num">98%</div>
+          <div class="stat-label">Client Retention Rate</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Years of Excellence</div>
+        </div>
+        </div><!-- /stats-grid -->
+      </div><!-- /right col -->
+
+
     </div>
+  </div>
 </section>
 
-<!-- FEATURED SERVICES SECTION -->
-<section class="services" id="services">
-    <div class="section-header">
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-subtitle">Comprehensive IT solutions tailored to your business needs and market opportunities</p>
+
+
+
+<!-- ============================================================
+     SERVICES
+============================================================ -->
+<section class="section section-soft" id="services">
+  <div class="container">
+    <div class="sec-header sec-header--center">
+      <div class="sec-label">What We Do</div>
+      <h2 class="sec-title">Services Built for Scale</h2>
+      <p class="sec-sub">From global talent acquisition to cloud architecture, we deliver technology solutions that drive real business outcomes.</p>
     </div>
+
+
     <div class="services-grid">
-        <div class="service-card">
-            <div class="service-icon">🎯</div>
-            <h3>Digital Strategy</h3>
-            <p>Develop comprehensive digital transformation strategies that align with your business objectives and market opportunities.</p>
+
+
+      <!-- Software Consulting -->
+      <div class="service-card">
+        <div class="service-icon-wrap si-indigo">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
         </div>
-        <div class="service-card">
-            <div class="service-icon">🔒</div>
-            <h3>Cybersecurity</h3>
-            <p>Protect your critical assets with advanced security solutions and comprehensive risk management frameworks.</p>
+        <h3 class="service-title">Software Consulting</h3>
+        <p class="service-desc">Expert guidance on architecture design, tech stack selection, and engineering best practices. We embed with your team to deliver strategic outcomes — from MVP to enterprise scale.</p>
+        <a href="#contact" class="service-link sl-indigo">
+          Talk to a consultant
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+
+      <!-- IT Staffing -->
+      <div class="service-card">
+        <div class="service-icon-wrap si-emerald">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
         </div>
-        <div class="service-card">
-            <div class="service-icon">☁️</div>
-            <h3>Cloud Solutions</h3>
-            <p>Migrate and optimize your infrastructure with scalable cloud solutions that reduce costs and improve efficiency.</p>
+        <h3 class="service-title">IT Staffing — Remote Engineers</h3>
+        <p class="service-desc">Access a global network of pre-vetted engineers ready for immediate remote placement. We match technical skills, culture fit, and timezone overlap with precision — so you ship faster.</p>
+        <a href="#contact" class="service-link sl-emerald">
+          Find your engineer
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+
+      <!-- Cloud & AI -->
+      <div class="service-card">
+        <div class="service-icon-wrap si-orange">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+          </svg>
         </div>
-        <div class="service-card">
-            <div class="service-icon">📊</div>
-            <h3>Data Analytics</h3>
-            <p>Unlock insights from your data with advanced analytics and business intelligence solutions.</p>
+        <h3 class="service-title">Cloud &amp; AI Solutions</h3>
+        <p class="service-desc">Accelerate your digital transformation with cloud-native architectures, AI/ML integration, and scalable infrastructure. We work across AWS, GCP, and Azure to move fast and stay secure.</p>
+        <a href="#contact" class="service-link sl-orange">
+          Explore solutions
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+
+      <!-- IT Support -->
+      <div class="service-card">
+        <div class="service-icon-wrap si-sky">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0z"/>
+          </svg>
         </div>
-        <div class="service-card">
-            <div class="service-icon">🔗</div>
-            <h3>System Integration</h3>
-            <p>Seamlessly integrate disparate systems and applications to streamline operations and enhance productivity.</p>
-        </div>
-        <div class="service-card">
-            <div class="service-icon">💡</div>
-            <h3>IT Consulting</h3>
-            <p>Expert guidance on technology selection, implementation, and optimization for maximum ROI.</p>
-        </div>
+        <h3 class="service-title">IT Support Services</h3>
+        <p class="service-desc">Reliable, responsive IT support keeping your teams productive. From helpdesk and sysadmin to network monitoring and cybersecurity — we've got your infrastructure covered around the clock.</p>
+        <a href="#contact" class="service-link sl-sky">
+          Get support
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+
     </div>
-    <div style="text-align: center; margin-top: 3rem;">
-        <a href="services.html" class="btn-primary">View All Services</a>
-    </div>
+  </div>
 </section>
 
-<!-- CTA SECTION -->
-<section class="cta-section">
-    <div class="cta-content">
-        <h2>Ready to Transform Your Business?</h2>
-        <p>Let's work together to achieve your digital transformation goals</p>
-        <a href="contact.html" class="btn-primary">Start Your Journey</a>
+
+
+
+<!-- ============================================================
+     TEAM
+============================================================ -->
+<section class="section" id="team">
+  <div class="container">
+    <div class="sec-header sec-header--center">
+      <div class="sec-label">Our Team</div>
+      <h2 class="sec-title">The People Behind Unisonix</h2>
+      <p class="sec-sub">Three pillars power every engagement — engineers who build, recruiters who match, and support specialists who keep everything running.</p>
     </div>
+
+
+    <div class="team-grid">
+
+
+      <!-- Engineers -->
+      <div class="team-card">
+        <div class="team-avatar">
+          <img
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=176&h=176&q=85"
+            alt="Software engineer"
+            loading="lazy"
+          >
+        </div>
+        <div class="team-badge tb-indigo">Engineering</div>
+        <h3 class="team-name">Global Engineers</h3>
+        <p class="team-desc">Senior engineers across frontend, backend, full-stack, DevOps, and data — pre-vetted, remote-ready, and aligned to US market standards from day one.</p>
+        <div class="team-skills">
+          <span class="tag tag--slate">React</span>
+          <span class="tag tag--slate">TypeScript</span>
+          <span class="tag tag--slate">Python</span>
+          <span class="tag tag--slate">AWS</span>
+          <span class="tag tag--slate">Go</span>
+        </div>
+      </div>
+
+
+      <!-- Recruiters -->
+      <div class="team-card">
+        <div class="team-avatar">
+          <img
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=176&h=176&q=85"
+            alt="Tech recruiter"
+            loading="lazy"
+          >
+        </div>
+        <div class="team-badge tb-emerald">Recruiting</div>
+        <h3 class="team-name">Expert Recruiters</h3>
+        <p class="team-desc">Specialized tech recruiters who deeply understand both the US job market and international talent landscapes. We don't just fill roles — we build lasting teams.</p>
+        <div class="team-skills">
+          <span class="tag tag--slate">Talent Sourcing</span>
+          <span class="tag tag--slate">US Market</span>
+          <span class="tag tag--slate">Vetting</span>
+          <span class="tag tag--slate">Onboarding</span>
+        </div>
+      </div>
+
+
+      <!-- Support -->
+      <div class="team-card">
+        <div class="team-avatar">
+          <img
+            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=176&h=176&q=85"
+            alt="IT support professional"
+            loading="lazy"
+          >
+        </div>
+        <div class="team-badge tb-sky">Support</div>
+        <h3 class="team-name">Support Professionals</h3>
+        <p class="team-desc">Dedicated IT support specialists ensuring your operations run without a hitch — from day-to-day helpdesk to complex infrastructure management and security monitoring.</p>
+        <div class="team-skills">
+          <span class="tag tag--slate">Helpdesk</span>
+          <span class="tag tag--slate">Sysadmin</span>
+          <span class="tag tag--slate">Networking</span>
+          <span class="tag tag--slate">Security</span>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-    <div class="footer-content">
-        <div class="footer-section">
-            <h4>About Unisonix</h4>
-            <p>Leading IT consulting firm delivering innovative solutions for digital transformation and business growth.</p>
+
+
+
+<!-- ============================================================
+     CONTACT
+============================================================ -->
+<section class="section section-soft" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+
+      <!-- Left: info -->
+      <div>
+        <div class="sec-label">Get in Touch</div>
+        <h2 class="sec-title">Let's Build Something Great Together</h2>
+        <p class="sec-sub">Whether you need world-class engineers, strategic consulting, or reliable IT support — we're ready to help you move faster.</p>
+
+
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Headquarters</div>
+              <div class="contact-item-value">Remote-first · Serving the US Market Globally</div>
+            </div>
+          </div>
+
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value">contact@unisonix.com</div>
+            </div>
+          </div>
+
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Response Time</div>
+              <div class="contact-item-value">We respond within 24 hours</div>
+            </div>
+          </div>
+
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Coverage</div>
+              <div class="contact-item-value">Engineers in 40+ countries, US-aligned</div>
+            </div>
+          </div>
         </div>
-        <div class="footer-section">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="team.html">Team</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h4>Services</h4>
-            <ul>
-                <li><a href="services.html">Digital Strategy</a></li>
-                <li><a href="services.html">Cybersecurity</a></li>
-                <li><a href="services.html">Cloud Solutions</a></li>
-                <li><a href="services.html">Data Analytics</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h4>Legal</h4>
-            <ul>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms-of-service.html">Terms of Service</a></li>
-                <li><a href="cookie-policy.html">Cookie Policy</a></li>
-            </ul>
-        </div>
+      </div>
+
+
+      <!-- Right: form card -->
+      <div class="form-card">
+        <h3 class="form-title">Send Us a Message</h3>
+        <form action="#" method="POST" novalidate>
+
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">First Name</label>
+              <input class="form-control" type="text" id="fname" name="first_name" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lname">Last Name</label>
+              <input class="form-control" type="text" id="lname" name="last_name" placeholder="Smith" required>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input class="form-control" type="email" id="email" name="email" placeholder="john@company.com" required>
+          </div>
+
+
+          <div class="form-group">
+            <label class="form-label" for="company">Company</label>
+            <input class="form-control" type="text" id="company" name="company" placeholder="Acme Corp">
+          </div>
+
+
+          <div class="form-group">
+            <label class="form-label" for="service">Service of Interest</label>
+            <select class="form-control" id="service" name="service">
+              <option value="" disabled selected>Select a service…</option>
+              <option value="consulting">Software Consulting</option>
+              <option value="staffing">IT Staffing — Remote Engineers</option>
+              <option value="cloud-ai">Cloud &amp; AI Solutions</option>
+              <option value="support">IT Support Services</option>
+              <option value="other">General Inquiry</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-control" id="message" name="message" placeholder="Tell us about your project, team size, or what you're looking for…"></textarea>
+          </div>
+
+
+          <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+        </form>
+      </div>
+
+
     </div>
+  </div>
+</section>
+
+
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+
+
+      <!-- Brand -->
+      <div>
+        <div class="footer-logo">Uni<em>sonix</em></div>
+        <p class="footer-tagline">A global software consulting and IT staffing firm connecting world-class engineers with leading US companies — fully remote, built for scale.</p>
+      </div>
+
+
+      <!-- Company links -->
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#team">Our Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+
+      <!-- Services links -->
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Software Consulting</a></li>
+          <li><a href="#services">IT Staffing</a></li>
+          <li><a href="#services">Cloud &amp; AI</a></li>
+          <li><a href="#services">IT Support</a></li>
+        </ul>
+      </div>
+
+
+      <!-- Contact -->
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span>contact@unisonix.com</span>
+        </div>
+        <div class="footer-contact-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span>Remote-first · Global Operations<br>Focused on the US Market</span>
+        </div>
+      </div>
+
+
+    </div>
+
+
     <div class="footer-bottom">
-        <p>&copy; 2026 Unisonix LLC. All rights reserved.</p>
+      <p class="footer-copy">© 2025 Unisonix. All rights reserved.</p>
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </nav>
     </div>
+  </div>
 </footer>
 
-<script src="script.js"></script>
+
 </body>
 </html>
